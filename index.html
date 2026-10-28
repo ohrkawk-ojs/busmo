@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="description" content="부스모 회원관리 PWA - 개인정보는 이 기기에만 저장됩니다.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>부스모 회원관리</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar"><div><p class="eyebrow">BUSMO</p><h1>회원관리</h1></div><button id="installBtn" class="ghost hidden">설치</button></header>
+    <section class="toolbar"><input id="search" type="search" placeholder="이름·닉네임 검색" autocomplete="off"><button id="addBtn" class="primary">＋ 회원 추가</button></section>
+    <p class="privacy">🔒 회원 정보와 사진은 이 브라우저의 로컬 저장소에만 보관됩니다.</p>
+    <section id="cards" class="cards" aria-live="polite"></section>
+    <section id="empty" class="empty"><div class="empty-icon">👥</div><h2>등록된 회원이 없습니다</h2><p>회원 추가 버튼으로 첫 회원을 등록해 보세요.</p></section>
+    <footer><button id="backupBtn">JSON 백업</button><button id="restoreBtn">JSON 복원</button><input id="restoreInput" type="file" accept="application/json" hidden></footer>
+  </main>
+  <dialog id="memberDialog"><form method="dialog" id="memberForm"><div class="dialog-head"><h2 id="dialogTitle">회원 추가</h2><button value="cancel" class="close">×</button></div><input type="hidden" id="memberId"><label>사진<input id="photo" type="file" accept="image/*"></label><div id="photoPreview" class="photo-preview">사진 없음</div><label>이름<input id="name" required maxlength="40"></label><label>닉네임<input id="nickname" maxlength="40"></label><label>출생연도<input id="birthYear" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="예: 1990"></label><div class="form-actions"><button value="cancel" class="secondary">취소</button><button value="save" class="primary">저장</button></div></form></dialog>
+  <template id="cardTemplate"><article class="card"><div class="avatar"></div><div class="card-main"><div class="card-title"><h3></h3><span class="nickname"></span></div><p class="birth"></p><div class="card-actions"><button class="detail secondary">상세</button><button class="edit secondary">수정</button><button class="remove danger">삭제</button></div></div></article></template>
+  <script src="app.js"></script>
+</body>
+</html>
